@@ -35,6 +35,7 @@ def notify(message):
     try:
         print(message)
         requests.get(f"https://api.telegram.org/{token}/sendMessage", params={'chat_id': chat_id, 'text': message})
+        time.sleep(3)
     except Exception:
         print(">>> Sending notification failed.", message)
 
