@@ -25,7 +25,8 @@ def get_ads():
     for ad in ads:
         title, price = [x.text for x in ad.find_all("strong")]
         qth, date = [x.next for x in ad.find_all("i")]
-        out.append({"title": title, "qth": qth, "date": date})
+        url = ad.find('a')['href']
+        out.append({"title": title, "qth": qth, "date": date, "price": price, "url": url})
 
     return out
 
@@ -51,7 +52,7 @@ while True:
     for ad in get_ads():
         md5 = get_md5(ad['title']+ad['qth'])
         if md5 not in hashes and not initial_run:
-            notify(f"New ad {ad['title']} {ad['qth']} {ad['price']} {ad['date']}")
+            notify(f"New ad {ad['title']} {ad['qth']} {ad['price']} {ad['url']}")
         hashes.add(md5)
 
     print(f"Monitoring {len(hashes)} ads.")
