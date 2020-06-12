@@ -25,8 +25,8 @@ def get_ads():
     for ad in ads:
         title, price = [x.text for x in ad.find_all("strong")]
         qth, date = [x.next for x in ad.find_all("i")]
-        url = ad.find('a')['href']
-        out.append({"title": title, "qth": qth, "date": date, "price": price, "url": url})
+        ad_url = ad.find('a')['href']
+        out.append({"title": title, "qth": qth, "date": date, "price": price, "url": ad_url})
 
     return out
 
