@@ -51,7 +51,7 @@ initial_run = True
 
 while True:
     for ad in get_ads():
-        md5 = get_md5(ad['title']+ad['qth'])
+        md5 = get_md5(ad['url'])
         if md5 not in hashes and not initial_run:
             notify(f"New ad {ad['title']} {ad['qth']} {ad['price']} {ad['url']}")
         hashes.add(md5)
