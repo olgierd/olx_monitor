@@ -5,7 +5,7 @@ import hashlib
 import requests
 import time
 
-sleeptime = 30
+sleeptime = 5*60
 url = "https://www.olx.pl/poznan/q-skuter-125/?search%5Bfilter_float_price%3Ato%5D=5000&search%5Bdist%5D=100"
 
 ###########################################################################
@@ -53,7 +53,7 @@ while True:
     for ad in get_ads():
         md5 = get_md5(ad['url'])
         if md5 not in hashes and not initial_run:
-            notify(f"New ad {ad['title']} {ad['qth']} {ad['price']} {ad['url']}")
+            notify(f"{ad['title']}\n{ad['qth']}\n{ad['price']}\n{ad['url']}")
         hashes.add(md5)
 
     print(f"Monitoring {len(hashes)} ads.")
